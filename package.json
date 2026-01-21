@@ -4,7 +4,7 @@
     "title": "GitHub Copilot Usage",
     "description": "View your GitHub Copilot Premium request usage directly in Raycast",
     "icon": "extension_icon.png",
-    "author": "your-name",
+    "author": "tnitish",
     "license": "MIT",
     "version": "1.0.0",
     "categories": [
