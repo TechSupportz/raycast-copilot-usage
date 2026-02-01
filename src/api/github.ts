@@ -1,4 +1,5 @@
 import { UsageResponse } from "../types/usage"
+import { mockUsageData } from "./mockData"
 
 const GITHUB_API_BASE = "https://api.github.com"
 const API_VERSION = "2022-11-28"
@@ -19,6 +20,24 @@ export async function fetchCopilotUsage(
     year?: number,
     month?: number,
 ): Promise<UsageResponse> {
+    // Mock mode - return mock data when token starts with "mock"
+    if (token.startsWith("mock")) {
+        // token values: "mock", "mock-low", "mock-medium", "mock-high"
+        // "mock" defaults to "medium" scenario
+        let mockLevel: keyof typeof mockUsageData = "medium"
+        
+        if (token === "mock-low") {
+            mockLevel = "low"
+        } else if (token === "mock-high") {
+            mockLevel = "high"
+        } else if (token === "mock" || token === "mock-medium") {
+            mockLevel = "medium"
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 500)) // Simulate network delay
+        return mockUsageData[mockLevel]
+    }
+
     const currentDate = new Date()
     const queryYear = year || currentDate.getFullYear()
     const queryMonth = month || currentDate.getMonth() + 1
@@ -73,6 +92,12 @@ export async function fetchCopilotUsage(
 }
 
 export async function getCurrentUser(token: string): Promise<string> {
+    // Mock mode - return mock username when token starts with "mock"
+    if (token.startsWith("mock")) {
+        await new Promise(resolve => setTimeout(resolve, 300)) // Simulate network delay
+        return "octocat"
+    }
+
     const url = `${GITHUB_API_BASE}/user`
 
     try {
