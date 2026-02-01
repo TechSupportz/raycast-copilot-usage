@@ -1,22 +1,22 @@
 import {
-	Action,
-	ActionPanel,
-	Color,
-	getPreferenceValues,
-	Icon,
-	List,
-	showToast,
-	Toast,
+    Action,
+    ActionPanel,
+    Color,
+    getPreferenceValues,
+    Icon,
+    List,
+    showToast,
+    Toast,
 } from "@raycast/api"
 import { usePromise } from "@raycast/utils"
 import { fetchCopilotUsage, getCurrentUser, GitHubAPIError } from "./api/github"
 import { CopilotPlan } from "./types/usage"
 import {
-	calculateUsageSummary,
-	formatNumber,
-	formatPercentage,
-	formatResetDate,
-	getEmptyMessage
+    calculateUsageSummary,
+    formatNumber,
+    formatPercentage,
+    formatResetDate,
+    getEmptyMessage,
 } from "./utils/formatting"
 
 interface Preferences {
