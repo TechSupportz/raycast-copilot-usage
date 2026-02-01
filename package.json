@@ -1,12 +1,23 @@
 {
     "$schema": "https://www.raycast.com/schemas/extension.json",
-    "name": "github-copilot-usage",
+    "name": "raycast-gh-copilot-usage",
     "title": "GitHub Copilot Usage",
     "description": "View your GitHub Copilot Premium request usage directly in Raycast",
     "icon": "extension_icon.png",
-    "author": "tnitish",
+    "author": "TechSupportz",
     "license": "MIT",
     "version": "1.0.0",
+    "keywords": [
+        "github",
+        "copilot",
+        "usage",
+        "billing",
+        "premium",
+        "ai",
+        "quota",
+        "tracking",
+        "analytics"
+    ],
     "categories": [
         "Developer Tools",
         "Productivity"

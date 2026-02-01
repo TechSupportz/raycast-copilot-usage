@@ -1,109 +1,70 @@
-# GitHub Copilot Premium Usage - Raycast Extension
+# GitHub Copilot Usage
 
-View your GitHub Copilot Premium request usage directly in Raycast without having to visit GitHub.
+Track your GitHub Copilot Premium request usage directly in Raycast. Monitor your quota usage, remaining requests, and view detailed breakdowns by AI model—all without leaving your keyboard.
 
 ## Features
 
-- **Current Month Summary**: View total requests, costs, and price per request
-- **Model Breakdown**: See usage split by different AI models (GPT-5, Claude, etc.)
-- **Manual Refresh**: Update your usage data on demand
-- **Secure Token Storage**: Your GitHub Personal Access Token is stored securely in Raycast preferences
+- **Real-time Usage Tracking**: View your current month's premium request usage with color-coded indicators
+- **Quota Monitoring**: Track requests used vs your plan's quota limit with percentage indicators
+- **Remaining Requests**: See exactly how many premium requests you have left this billing cycle
+- **Reset Countdown**: Know when your quota refreshes with a helpful countdown
+- **Multi-Plan Support**: Works with Copilot Free, Pro, Pro+, Business, and Enterprise plans
+- **Model Breakdown**: See detailed usage statistics for each AI model (GPT-4, Claude, etc.)
+- **Quick Actions**: Copy any metric or refresh data on demand
+- **Secure Storage**: Your GitHub token is stored securely in Raycast preferences
 
-## Installation
+## Setup
 
-### 1. Install the Extension
+### 1. Create a GitHub Personal Access Token
 
-```bash
-# Navigate to the extension directory
-cd github-copilot-usage
+You need a GitHub Personal Access Token with billing permissions to access your usage data.
 
-# Install dependencies
-npm install
-
-# Build the extension (optional, for development you can use dev mode)
-npm run build
-```
-
-### 2. Import to Raycast
-
-1. Open Raycast
-2. Run the command: **Import Extension**
-3. Select this directory: `github-copilot-usage`
-4. Raycast will import and activate the extension
-
-### 3. Configure GitHub Personal Access Token
-
-You need a GitHub Personal Access Token with specific permissions to access your billing data.
-
-#### Creating Your Token
-
-1. Go to: https://github.com/settings/tokens?type=beta
-2. Click **"Generate new token"** (fine-grained personal access token)
-3. Configure the token:
+1. Visit [GitHub Token Settings](https://github.com/settings/tokens?type=beta)
+2. Click **Generate new token** (fine-grained personal access token)
+3. Configure your token:
    - **Token name**: `Raycast Copilot Usage` (or any name you prefer)
    - **Expiration**: Choose your preferred duration (e.g., 90 days)
-   - **Repository access**: No need to select repositories
+   - **Repository access**: No repositories needed
    - **Account permissions**:
-     - Scroll to **"Plan"** → Set to **"Read-only"**
-4. Click **"Generate token"**
-5. **Copy the token** (you won't be able to see it again!)
+     - Scroll to **Plan** → Set to **Read-only**
+4. Click **Generate token**
+5. **Copy the token** - you won't be able to see it again!
 
-#### Adding Token to Raycast
+### 2. Configure the Extension
 
-1. Open Raycast
-2. Run the command: **View Copilot Usage**
-3. When prompted, paste your GitHub Personal Access Token
-4. The token is saved securely in Raycast preferences
+1. Open Raycast and run **View Copilot Usage**
+2. When prompted, paste your GitHub Personal Access Token
+3. Select your Copilot plan from the dropdown (defaults to Pro)
 
-Alternatively:
-1. Open Raycast preferences (⌘ + ,)
-2. Navigate to **Extensions** → **GitHub Copilot Usage**
-3. Paste your token in the **GitHub Personal Access Token** field
+That's it! The extension will fetch your usage data and display it.
 
 ## Usage
 
 ### View Your Usage
 
-1. Open Raycast (⌘ + Space)
-2. Type: **View Copilot Usage**
-3. Press Enter
+Open Raycast and type **View Copilot Usage** to see:
 
-The extension will display:
-- **Total Requests**: Number of API requests made this month
-- **Total Cost**: Total amount spent this month
-- **Price per Request**: Average cost per request
-- **Usage by Model**: Breakdown showing requests and costs per AI model
+- **Usage Percentage**: How much of your quota you've used (color-coded: green/yellow/red)
+- **Requests Used**: Total premium requests made this month vs your quota limit
+- **Remaining Requests**: How many premium requests you have left
+- **Reset Date**: When your quota refreshes (shown as countdown)
+- **Model Breakdown**: Detailed usage for each AI model you've used
 
 ### Refresh Data
 
-- Press **⌘ + R** while viewing the usage list
-- Or select **"Refresh Data"** from the actions menu
-- Or select the "Refresh Data" item at the bottom of the list
+Press `⌘ + R` or select **Refresh Data** from the actions to update your usage statistics.
 
 ### Copy Information
 
-- Select any item and press **⌘ + C** to copy the information to clipboard
-- Each item has contextual copy actions (copy request count, cost, etc.)
+Select any metric and press `⌘ + C` to copy it to your clipboard. Each item has contextual copy actions for quick access to the data you need.
 
-## Data Information
+## Supported Plans
 
-### What Data is Shown
-
-The extension uses GitHub's Billing API endpoint:
-```
-GET /users/{username}/settings/billing/premium_request/usage
-```
-
-This provides:
-- Usage data for up to 24 months
-- Daily processed metrics (data available up to yesterday)
-- Requires telemetry to be enabled in your IDE
-
-### Limitations
-
-- **Minimum Requirements**: No minimum usage required for personal accounts
-- **Data Delay**: Usage data is processed daily, so today's usage won't appear until tomorrow
-- **Rate Limits**: GitHub API allows 5,000 requests/hour for authenticated users
+- **Copilot Free**: 50 requests/month
+- **Copilot Pro**: 300 requests/month
+- **Copilot Pro+**: 1,500 requests/month
+- **Copilot Business**: 300 requests/month
+- **Copilot Enterprise**: 1,000 requests/month
 
 ## Troubleshooting
 
@@ -113,114 +74,41 @@ This provides:
 - Check that you created a **fine-grained** token (not classic)
 
 ### "Access forbidden"
-- Verify your token has **"Plan"** permissions set to **Read-only**
+- Verify your token has **Plan** permissions set to **Read-only**
 - You may need to regenerate the token with correct permissions
 
 ### "No usage data available"
 - You may not have used Copilot Premium features yet this month
-- Usage data is processed daily - check back tomorrow
+- Usage data is processed daily by GitHub - check back tomorrow
 - Ensure you have GitHub Copilot Premium (not just Copilot Business/Individual)
 
 ### "Failed to fetch user"
 - Check your internet connection
-- Verify the token is valid
-- Try regenerating the token
-
-## Development
-
-### Run in Development Mode
-
-```bash
-npm run dev
-```
-
-This will open Raycast in development mode with the extension loaded.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Lint Code
-
-```bash
-npm run lint
-
-# Auto-fix issues
-npm run fix-lint
-```
-
-## Project Structure
-
-```
-github-copilot-usage/
-├── src/
-│   ├── view-copilot-usage.tsx   # Main UI component
-│   ├── api/
-│   │   └── github.ts            # GitHub API client
-│   ├── types/
-│   │   └── usage.ts             # TypeScript type definitions
-│   └── utils/
-│       └── formatting.ts        # Formatting utilities
-├── assets/
-│   └── command-icon.png         # Extension icon
-├── package.json                 # Extension manifest
-├── tsconfig.json                # TypeScript configuration
-└── README.md                    # This file
-```
-
-## API Reference
-
-### GitHub API Endpoints Used
-
-1. **Get Current User**
-   ```
-   GET https://api.github.com/user
-   ```
-   Used to fetch your GitHub username
-
-2. **Get Premium Request Usage**
-   ```
-   GET https://api.github.com/users/{username}/settings/billing/premium_request/usage
-   ```
-   Used to fetch Copilot Premium usage data
-
-### Required Permissions
-
-- **Plan** (Read-only): Required to access billing and usage information
+- Verify the token is valid and not expired
+- Try regenerating a new token
 
 ## Privacy & Security
 
-- Your GitHub Personal Access Token is stored securely in Raycast's preferences
+- Your GitHub Personal Access Token is stored securely in Raycast's encrypted preferences
 - The token is never logged or transmitted anywhere except to GitHub's official API
 - All API calls are made directly from your machine to GitHub
-- No third-party services are used
+- No third-party services are involved
+- Only requires read-only access to billing/plan information
 
-## License
+## About the Data
 
-MIT
+The extension uses GitHub's Billing API to fetch your premium request usage data. Usage data is:
 
-## Support
+- Updated daily by GitHub (today's usage appears tomorrow)
+- Available for up to 24 months of history
+- Sourced directly from GitHub's telemetry
 
-If you encounter issues:
-1. Check the Troubleshooting section above
-2. Verify your token has the correct permissions
-3. Ensure you're using GitHub Copilot Premium
+**Note**: You must have telemetry enabled in your IDE for usage to be tracked by GitHub.
 
 ## Contributing
 
-Feel free to submit issues and enhancement requests!
+Found a bug or have a feature request? Please check [DEVELOPMENT.md](./DEVELOPMENT.md) for development setup instructions.
 
-## Changelog
+## License
 
-### Version 1.0.0
-- Initial release
-- View current month Copilot Premium usage
-- Display total requests, costs, and per-model breakdown
-- Manual refresh functionality
-- Secure token storage
-
-## Credits
-
-Built with [Raycast API](https://developers.raycast.com/) and GitHub's REST API.
+MIT License - see [LICENSE](./LICENSE) for details.
