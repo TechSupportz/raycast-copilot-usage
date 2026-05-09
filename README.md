@@ -1,4 +1,4 @@
-# [DEPRECATED - https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/]
+# ⚠️ DEPRECATED - https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/
 
 # GitHub Copilot Usage
 
