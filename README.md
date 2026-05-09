@@ -1,3 +1,5 @@
+# [DEPRECATED - https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/]
+
 # GitHub Copilot Usage
 
 Track your GitHub Copilot Premium request usage directly in Raycast. Monitor your quota usage, remaining requests, and view detailed breakdowns by AI model—all without leaving your keyboard.
